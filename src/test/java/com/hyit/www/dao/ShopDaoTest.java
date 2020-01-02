@@ -40,4 +40,16 @@ public class ShopDaoTest extends BaseTest {
         int effectNum = shopDao.insertShop(shop);
         assertEquals(1,effectNum);
     }
+
+    @Test
+    public void testUpdateShop(){
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        shop.setShopName("俊俊的小店");
+        shop.setShopDesc("小店8折呦");
+        shop.setAdvice("最近8太行");
+        shop.setLastEditTime(new Date());
+        int effectNum = shopDao.updateShop(shop);
+        assertEquals(1,effectNum);
+    }
 }
