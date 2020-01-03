@@ -13,12 +13,14 @@ import java.util.Random;
 
 public class ImageUtil {
     /**获取项目classpath下路径*/
-    private static String bastPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+    private static String basePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
     private static final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     private static final Random random = new Random();
 
     public static String generateThumbnail(MultipartFile thumbnail, String targetAddr) {
+        /**获取随机文件名，防止文件重名*/
         String realFileName = getRandomFileName();
+        /**获取文件扩展名*/
         String extension = getFileExtension(thumbnail);
         /**创建文件夹*/
         makeDirPath(targetAddr);
@@ -28,11 +30,11 @@ public class ImageUtil {
         try{
             Thumbnails.of(thumbnail.getInputStream()).
                     size(200,200).
-                    watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(bastPath + "guagua.jpg")),0.5f).
+                    watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "watermark.jpg")),0.5f).
                     outputQuality(0.8f).toFile(dest);
         }
         catch (IOException e){
-            e.printStackTrace();
+            throw new RuntimeException("创建缩略图失败：" + e.toString());
         }
         return relativeAddr;
     }
@@ -66,10 +68,4 @@ public class ImageUtil {
             dirPath.mkdirs();
         }
     }
-//    public static void main(String[] args) throws IOException {
-//        Thumbnails.of(new File("C:\\Users\\Administrator\\Desktop\\yangmi.jpg")).
-//                size(200,200).
-//                watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(bastPath + "/wechat.jpg")),0.25f).
-//                outputQuality(0.8f).toFile("C:\\Users\\Administrator\\Desktop\\yangmi2.jpg");
-//    }
 }
