@@ -1,6 +1,6 @@
 package com.hyit.www.service.impl;
 
-import com.hyit.exceptions.ShopOperationException;
+import com.hyit.www.exceptions.ShopOperationException;
 import com.hyit.www.dao.ShopDao;
 import com.hyit.www.dto.ShopExecution;
 import com.hyit.www.entity.Shop;

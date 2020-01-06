@@ -1,6 +1,64 @@
-2020-01-03 15:12:19.520[main]DEBUG com.hyit.www.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr, phone, shop_img, priority, create_time, last_edit_time,enable_status,advice) VALUES (?,?,?,?, ?,?,?,?,?,?,?, ?,? ) 
-2020-01-03 15:12:19.584[main]DEBUG com.hyit.www.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 2(Integer), null, 测试的店铺1(String), test1(String), test1(String), 110(String), null, 1(Integer), 2020-01-03 15:12:18.248(Timestamp), 2020-01-03 15:12:18.248(Timestamp), 0(Integer), 审核中(String)
-2020-01-03 15:12:19.618[main]DEBUG com.hyit.www.dao.ShopDao.insertShop - <==    Updates: 1
-2020-01-03 15:12:20.110[main]DEBUG com.hyit.www.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name = ?, shop_desc = ?, shop_addr = ?, phone=?, shop_img=?, priority=?, last_edit_time=?, enable_status=?, advice=?, shop_category_id=?, area_id=? where shop_id = ? 
-2020-01-03 15:12:20.112[main]DEBUG com.hyit.www.dao.ShopDao.updateShop - ==> Parameters: 测试的店铺1(String), test1(String), test1(String), 110(String), \upload\item\shop19\2020010315121963472.jpg(String), 1(Integer), 2020-01-03 15:12:18.248(Timestamp), 0(Integer), 审核中(String), null, 2(Integer), 19(Long)
-2020-01-03 15:12:20.160[main]DEBUG com.hyit.www.dao.ShopDao.updateShop - <==    Updates: 1
+2020-01-06 10:53:29.941[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id, shop_category_name, shop_category_desc, priority, create_time, last_edit_time, parent_id, from tb_shop_category order by priority desc 
+2020-01-06 10:53:30.040[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 10:55:52.858[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id, FROM tb_shop_category ORDER BY priority DESC 
+2020-01-06 10:55:52.907[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 10:57:19.681[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category ORDER BY priority DESC 
+2020-01-06 10:57:19.721[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 10:57:19.820[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 10:58:18.247[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category ORDER BY priority DESC 
+2020-01-06 10:58:18.298[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 10:58:18.319[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-01-06 11:02:06.843[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category ORDER BY priority DESC 
+2020-01-06 11:02:06.874[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 11:02:06.895[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-01-06 11:02:06.910[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id=? ORDER BY priority DESC 
+2020-01-06 11:02:06.911[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 1(Long)
+2020-01-06 11:02:06.969[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 0
+2020-01-06 11:03:01.726[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category ORDER BY priority DESC 
+2020-01-06 11:03:01.765[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 11:03:01.790[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-01-06 11:03:01.804[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id=? ORDER BY priority DESC 
+2020-01-06 11:03:01.805[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 1(Long)
+2020-01-06 11:03:01.807[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 11:05:23.523[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category ORDER BY priority DESC 
+2020-01-06 11:05:23.569[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 11:05:23.595[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-01-06 11:05:23.611[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id=? ORDER BY priority DESC 
+2020-01-06 11:05:23.612[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 1(Long)
+2020-01-06 11:05:23.613[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 11:18:43.901[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 11:18:43.936[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 11:18:43.956[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 11:21:45.764[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 11:21:45.846[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 11:21:45.872[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 11:24:24.594[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 11:24:24.629[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 11:24:24.651[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 11:24:24.664[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null and parent_id=? ORDER BY priority DESC 
+2020-01-06 11:24:24.665[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 1(Long)
+2020-01-06 11:24:24.666[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 11:25:30.061[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null and parent_id=? ORDER BY priority DESC 
+2020-01-06 11:25:30.110[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 1(Long)
+2020-01-06 11:25:30.129[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 14:07:05.705[main]DEBUG com.hyit.www.dao.AreaDao.queryAreas - ==>  Preparing: SELECT area_id, area_name, priority, create_time, last_edit_time FROM tb_area ORDER BY priority DESC 
+2020-01-06 14:07:05.755[main]DEBUG com.hyit.www.dao.AreaDao.queryAreas - ==> Parameters: 
+2020-01-06 14:07:05.776[main]DEBUG com.hyit.www.dao.AreaDao.queryAreas - <==      Total: 2
+2020-01-06 14:10:12.670[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null and parent_id=? ORDER BY priority DESC 
+2020-01-06 14:10:12.711[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 1(Long)
+2020-01-06 14:10:12.731[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 14:11:17.258[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 14:11:17.308[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 14:11:17.331[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 14:12:35.835[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 14:12:35.886[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 14:12:35.916[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1
+2020-01-06 14:13:01.648[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 14:13:01.690[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 14:13:01.713[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-01-06 14:13:31.510[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 14:13:31.566[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 14:13:31.592[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-01-06 14:13:52.149[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
+2020-01-06 14:13:52.206[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2020-01-06 14:13:52.233[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
