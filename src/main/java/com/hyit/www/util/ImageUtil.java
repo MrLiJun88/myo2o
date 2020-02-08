@@ -17,6 +17,7 @@ public class ImageUtil {
     private static final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     private static final Random random = new Random();
 
+    /**为上传的图片打上水印*/
     public static String generateThumbnail(MultipartFile thumbnail, String targetAddr) {
         /**获取随机文件名，防止文件重名*/
         String realFileName = getRandomFileName();
@@ -66,6 +67,25 @@ public class ImageUtil {
         File dirPath = new File(realFileParentPath);
         if(! dirPath.exists()){
             dirPath.mkdirs();
+        }
+    }
+
+    /**
+     * 当商铺图片更新时，删除旧的图片和文件夹
+     */
+    public static void deleteFileOrPath(String storePath){
+        File fileOrPath = new File(PathUtil.getImgBasePath() + storePath);
+        // 存在
+        if (fileOrPath.exists()) {
+            // 如果是目录，则递归删除
+            if (fileOrPath.isDirectory()) {
+                File[] files = fileOrPath.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    files[i].delete();
+                }
+            }
+            // 删除文件或文件夹,则直接删除
+            fileOrPath.delete();
         }
     }
 }

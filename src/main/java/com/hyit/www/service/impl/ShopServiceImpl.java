@@ -60,6 +60,47 @@ public class ShopServiceImpl implements ShopService {
         return new ShopExecution(ShopStateEnum.CHECK,shop);
     }
 
+    @Override
+    @Transient
+    public Shop getByShopId(long shopId) {
+        return shopDao.queryByShopId(shopId);
+    }
+
+    @Override
+    @Transient
+    public ShopExecution modifyShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {
+
+        if(null == shop || null == shop.getShopId()){
+            return new ShopExecution(ShopStateEnum.NULL_SHOP);
+        }
+        else {
+            try {
+                // 判断是否要处理照片
+                if (shopImg != null) {
+                    Shop tempShop = shopDao.queryByShopId(shop.getShopId());
+                    if (tempShop.getShopImg() != null) {
+                        // 删除原先图片
+                        ImageUtil.deleteFileOrPath(tempShop.getShopImg());
+                    }
+                    // 添加新照片
+                    addShopImg(shop, shopImg);
+                }
+                // 更新照片信息
+                shop.setLastEditTime(new Date());
+                int effectNum = shopDao.updateShop(shop);
+                // 更新成功
+                if (effectNum > 0) {
+                    shop = shopDao.queryByShopId(shop.getShopId());
+                    return new ShopExecution(ShopStateEnum.SUCCESS, shop);
+                } else {
+                    return new ShopExecution(ShopStateEnum.INNER_ERROR);
+                }
+            } catch (Exception e) {
+                throw new ShopOperationException("modifyShop error " + e.getMessage());
+            }
+        }
+    }
+
     private void addShopImg(Shop shop, MultipartFile  shopImg) {
         /**1.获取shop图片目录的相对值路径*/
         String dest = PathUtil.getShopImagePath(shop.getShopId());

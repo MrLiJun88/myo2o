@@ -62,4 +62,14 @@ public class ShopServiceTest extends BaseTest {
                 IOUtils.toByteArray(input));
         return multipartFile;
     }
+
+    @Test
+    public void testModifyShop() throws Exception{
+        Shop shop = shopService.getByShopId(1L);
+        shop.setShopName("迪迪的麻辣烫");
+        String filePath = "C:\\Users\\Administrator\\Desktop\\Gproject\\images\\malatang.jpg";
+        ShopExecution shopExecution = shopService.modifyShop(shop, path2MultipartFile(filePath));
+        System.out.println("新图片地址 " + shopExecution.getShop().getShopImg());
+    }
+
 }
