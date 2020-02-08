@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 public class CodeUtil {
     /**判断验证码是否正确*/
     public static boolean checkVerifyCode(HttpServletRequest request){
-        String verifyCodeExpected = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_CONFIG_KEY);
+        String verifyCodeExpected = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         String verifyCodeActual = HttpServletRequestUtil.getString(request,"verifyCodeActual");
         if(verifyCodeActual == null || ! verifyCodeActual.equals(verifyCodeExpected)){
             return false;

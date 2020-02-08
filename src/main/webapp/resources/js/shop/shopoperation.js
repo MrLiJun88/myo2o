@@ -1,6 +1,6 @@
 $(function () {
-    var initUrl = '/o2o/shopadmin/getShopInitInfo';
-    var registerShopUrl = '/o2o/shopadmin/registerShop';
+    var initUrl = '/myo2o/shopadmin/getShopInitInfo';
+    var registerShopUrl = '/myo2o/shopadmin/registerShop';
     getShopInitInfo();
     /**
      * 从后台数据库中获取商铺信息与区域信息，填充至页面中

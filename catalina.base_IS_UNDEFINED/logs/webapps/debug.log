@@ -62,3 +62,6 @@
 2020-01-06 14:13:52.149[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: SELECT shop_category_id, shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id FROM tb_shop_category WHERE parent_id is not null ORDER BY priority DESC 
 2020-01-06 14:13:52.206[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
 2020-01-06 14:13:52.233[main]DEBUG com.hyit.www.dao.ShopCategoryDao.queryShopCategory - <==      Total: 2
+2020-02-08 18:04:53.961[main]DEBUG com.hyit.www.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name = ?, shop_desc = ?, last_edit_time=?, advice=? where shop_id = ? 
+2020-02-08 18:04:54.011[main]DEBUG com.hyit.www.dao.ShopDao.updateShop - ==> Parameters: 俊俊的小店(String), 小店8折呦(String), 2020-02-08 18:04:53.504(Timestamp), 最近8太行(String), 1(Long)
+2020-02-08 18:04:54.040[main]DEBUG com.hyit.www.dao.ShopDao.updateShop - <==    Updates: 1
