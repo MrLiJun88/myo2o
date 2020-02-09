@@ -46,3 +46,39 @@
 2020-02-09 17:05:45.825[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
 2020-02-09 17:05:45.826[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
 2020-02-09 17:05:45.827[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1
+2020-02-09 17:21:31.625[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id ORDER BY s.priority DESC LIMIT ? , ? 
+2020-02-09 17:21:31.664[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==> Parameters: 1(Long), 1(Long), 0(Integer), 2(Integer)
+2020-02-09 17:21:31.692[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - <==      Total: 2
+2020-02-09 17:21:31.702[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
+2020-02-09 17:21:31.703[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
+2020-02-09 17:21:31.705[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1
+2020-02-09 17:22:18.319[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id ORDER BY s.priority DESC LIMIT ? , ? 
+2020-02-09 17:22:18.364[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==> Parameters: 1(Long), 1(Long), 0(Integer), 2(Integer)
+2020-02-09 17:22:18.389[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - <==      Total: 2
+2020-02-09 17:22:18.398[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
+2020-02-09 17:22:18.398[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
+2020-02-09 17:22:18.400[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1
+2020-02-09 17:22:57.477[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id ORDER BY s.priority DESC LIMIT ? , ? 
+2020-02-09 17:22:57.517[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==> Parameters: 1(Long), 1(Long), 0(Integer), 2(Integer)
+2020-02-09 17:22:57.544[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - <==      Total: 2
+2020-02-09 17:22:57.553[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
+2020-02-09 17:22:57.554[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
+2020-02-09 17:22:57.556[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1
+2020-02-09 17:23:16.471[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id ORDER BY s.priority DESC LIMIT ? , ? 
+2020-02-09 17:23:16.507[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==> Parameters: 1(Long), 1(Long), 0(Integer), 2(Integer)
+2020-02-09 17:23:16.530[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - <==      Total: 2
+2020-02-09 17:23:16.537[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
+2020-02-09 17:23:16.538[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
+2020-02-09 17:23:16.539[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1
+2020-02-09 17:23:35.284[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id ORDER BY s.priority DESC LIMIT ? , ? 
+2020-02-09 17:23:35.315[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==> Parameters: 1(Long), 1(Long), 2(Integer), 2(Integer)
+2020-02-09 17:23:35.337[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - <==      Total: 1
+2020-02-09 17:23:35.344[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
+2020-02-09 17:23:35.345[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
+2020-02-09 17:23:35.346[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1
+2020-02-09 17:24:19.986[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.create_time, s.last_edit_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id ORDER BY s.priority DESC LIMIT ? , ? 
+2020-02-09 17:24:20.015[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - ==> Parameters: 1(Long), 1(Long), 0(Integer), 2(Integer)
+2020-02-09 17:24:20.041[main]DEBUG com.hyit.www.dao.ShopDao.queryShopList - <==      Total: 2
+2020-02-09 17:24:20.049[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==>  Preparing: SELECT count(1) FROM tb_shop s, tb_area a, tb_shop_category sc WHERE 1=1 and s.shop_category_id = ? and s.owner_id = ? AND s.area_id = a.area_id AND s.shop_category_id = sc.shop_category_id 
+2020-02-09 17:24:20.051[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - ==> Parameters: 1(Long), 1(Long)
+2020-02-09 17:24:20.052[main]DEBUG com.hyit.www.dao.ShopDao.queryShopCount - <==      Total: 1

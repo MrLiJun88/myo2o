@@ -7,13 +7,16 @@ import com.hyit.www.entity.Shop;
 import com.hyit.www.enums.ShopStateEnum;
 import com.hyit.www.service.ShopService;
 import com.hyit.www.util.ImageUtil;
+import com.hyit.www.util.PageCalculator;
 import com.hyit.www.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ShopServiceImpl implements ShopService {
@@ -102,6 +105,26 @@ public class ShopServiceImpl implements ShopService {
                 throw new ShopOperationException("modifyShop error " + e.getMessage());
             }
         }
+    }
+
+    @Override
+    public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) throws ShopOperationException {
+        // 前台页面插入的pageIndex（第几页）， 而dao层是使用 rowIndex （第几行） ，所以需要转换一下
+        int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+        List<Shop> shopList = new ArrayList<Shop>(16);
+        ShopExecution se = new ShopExecution();
+        // 查询带有分页的shopList
+        shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
+        // 查询符合条件的shop总数
+        int count = shopDao.queryShopCount(shopCondition);
+        // 将shopList和 count设置到se中，返回给控制层
+        if (shopList != null) {
+            se.setShopList(shopList);
+            se.setCount(count);
+        } else {
+            se.setState(ShopStateEnum.INNER_ERROR.getState());
+        }
+        return se;
     }
 
     private void addShopImg(Shop shop, MultipartFile  shopImg) {

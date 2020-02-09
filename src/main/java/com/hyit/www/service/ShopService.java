@@ -12,4 +12,13 @@ public interface ShopService {
     Shop getByShopId(long shopId);
     /**更新店铺信息，包含对店铺图片的更新*/
     ShopExecution modifyShop(Shop shop, MultipartFile shopImg) throws ShopOperationException;
+    /**
+     * 获取店铺分页列表
+     * @param shopCondition 店铺查询条件
+     * @param pageIndex     第几页
+     * @param pageSize      每页条数
+     * @return
+     * @throws ShopOperationException
+     */
+    ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) throws ShopOperationException;
 }

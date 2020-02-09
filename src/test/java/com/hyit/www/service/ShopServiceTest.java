@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -79,4 +80,20 @@ public class ShopServiceTest extends BaseTest {
         System.out.println(shop.getArea().getAreaName());
         System.out.println(shop.getShopCategory().getShopCategoryName());
     }
+
+    @Test
+    public void testGetShopList(){
+        Shop shopCondition = new Shop();
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setUserId(1L);
+        shopCondition.setOwner(personInfo);
+        ShopCategory shopCategory = new ShopCategory();
+        shopCategory.setShopCategoryId(1L);
+        shopCondition.setShopCategory(shopCategory);
+
+        ShopExecution shopExecution =  shopService.getShopList(shopCondition,1,2);
+        assertEquals(2,shopExecution.getShopList().size());
+        System.out.println(shopExecution.getCount());
+    }
+
 }
