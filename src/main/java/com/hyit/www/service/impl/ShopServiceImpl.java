@@ -66,6 +66,9 @@ public class ShopServiceImpl implements ShopService {
         return shopDao.queryByShopId(shopId);
     }
 
+    /**
+     * 更新店铺信息
+     */
     @Override
     @Transient
     public ShopExecution modifyShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {

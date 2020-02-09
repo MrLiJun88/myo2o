@@ -72,4 +72,11 @@ public class ShopServiceTest extends BaseTest {
         System.out.println("新图片地址 " + shopExecution.getShop().getShopImg());
     }
 
+    @Test
+    public void testGetShopById(){
+        Shop shop = shopService.getByShopId(1L);
+        System.out.println(shop.getShopName());
+        System.out.println(shop.getArea().getAreaName());
+        System.out.println(shop.getShopCategory().getShopCategoryName());
+    }
 }
