@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/shopadmin")
 public class ShopManagementController {
 
@@ -42,7 +42,6 @@ public class ShopManagementController {
      * 注册新店铺
      */
     @RequestMapping(value = "/registerShop",method = RequestMethod.POST)
-    @ResponseBody
     private Map<String,Object> registerShop(HttpServletRequest request){
         Map<String,Object> map = new HashMap<>(16);
         /**检查输入的验证码是否正确*/
@@ -108,7 +107,6 @@ public class ShopManagementController {
      * 获取区域与店铺类型信息，并返回给前台页面
      */
     @RequestMapping(value = "/getShopInitInfo",method = RequestMethod.GET)
-    @ResponseBody
     public Map<String, Object> getShopInitInfo() {
         Map<String,Object> modelMap = new HashMap<>(16);
         List<ShopCategory> shopCategoryList;
@@ -132,7 +130,6 @@ public class ShopManagementController {
      * 根据shopId获取到店铺信息
      */
     @GetMapping(value = "/getShopById")
-    @ResponseBody
     public Map<String,Object> getShopById(HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();
         // 获取shopId
@@ -161,7 +158,6 @@ public class ShopManagementController {
      * 更新店铺信息
      */
     @PostMapping(value = "/modifyShop")
-    @ResponseBody
     public Map<String,Object> modifyShop(HttpServletRequest request){
         Map<String,Object> map = new HashMap<>(16);
         /**检查输入的验证码是否正确*/
@@ -214,6 +210,61 @@ public class ShopManagementController {
             map.put("errMsg", "请输入店铺id");
             return map;
         }
+    }
+
+    /**
+     * 根据模糊查询的条件，获取符合条件的店铺列表集合
+     */
+    @GetMapping(value = "/getShopList")
+    public Map<String, Object> getShopList(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>(16);
+        PersonInfo user = new PersonInfo();
+        user.setUserId(1L);
+        request.getSession().setAttribute("user",user);
+        user = (PersonInfo) request.getSession().getAttribute("user");
+        try {
+            Shop shopCondition = new Shop();
+            shopCondition.setOwner(user);
+            ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 50);
+            map.put("shopList", shopExecution.getShopList());
+            // 列出店铺成功之后，将店铺放入session中作为权限验证依据，即该帐号只能操作它自己的店铺
+            request.getSession().setAttribute("shopList", shopExecution.getShopList());
+            map.put("user", user);
+            map.put("success", true);
+        } catch (Exception e) {
+            map.put("success", false);
+            map.put("errMsg", e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 获取店铺管理信息
+     */
+    @GetMapping(value = "/getShopManagementInfo")
+    public Map<String,Object> getShopManagementInfo(HttpServletRequest request){
+        Map<String, Object> map = new HashMap<>(16);
+        long shopId = HttpServletRequestUtil.getLong(request, "shopId");
+        // 如果shopId不存在
+        if (shopId <= 0) {
+            // 从session中获取店铺信息
+            Object currentShopObj = request.getSession().getAttribute("currentShop");
+            if (currentShopObj == null) {
+                // 如果session中没有店铺信息，视为非法操作，重定向回店铺列表页面
+                map.put("redirect", true);
+                map.put("url", "/o2o/shopadmin/getShopList");
+            } else {
+                Shop currentShop = (Shop) currentShopObj;
+                map.put("redirect", false);
+                map.put("shopId", currentShop.getShopId());
+            }
+        } else {
+            Shop currentShop = new Shop();
+            currentShop.setShopId(shopId);
+            request.getSession().setAttribute("currentShop", currentShop);
+            map.put("redirect", false);
+        }
+        return map;
     }
 }
 
