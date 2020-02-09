@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -61,5 +62,17 @@ public class ShopDaoTest extends BaseTest {
         System.out.println("areaName " + shop.getArea().getAreaName());
         System.out.println(shop.getShopName());
     }
+
+    @Test
+    public void testQueryShopList(){
+        Shop shopCondition = new Shop();
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setUserId(1L);
+        shopCondition.setOwner(personInfo);
+
+        List<Shop> shopList =  shopDao.queryShopList(shopCondition,0,4);
+        assertEquals(4,shopList.size());
+    }
+
 
 }
