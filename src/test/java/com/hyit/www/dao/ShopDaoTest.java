@@ -69,9 +69,13 @@ public class ShopDaoTest extends BaseTest {
         PersonInfo personInfo = new PersonInfo();
         personInfo.setUserId(1L);
         shopCondition.setOwner(personInfo);
+        ShopCategory shopCategory = new ShopCategory();
+        shopCategory.setShopCategoryId(1L);
+        shopCondition.setShopCategory(shopCategory);
 
         List<Shop> shopList =  shopDao.queryShopList(shopCondition,0,4);
-        assertEquals(4,shopList.size());
+        assertEquals(2,shopList.size());
+        System.out.println(shopDao.queryShopCount(shopCondition));
     }
 
 
