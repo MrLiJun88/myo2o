@@ -22,6 +22,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -220,6 +221,7 @@ public class ShopManagementController {
         Map<String, Object> map = new HashMap<>(16);
         PersonInfo user = new PersonInfo();
         user.setUserId(1L);
+        user.setName("李俊");
         request.getSession().setAttribute("user",user);
         user = (PersonInfo) request.getSession().getAttribute("user");
         try {
@@ -252,7 +254,7 @@ public class ShopManagementController {
             if (currentShopObj == null) {
                 // 如果session中没有店铺信息，视为非法操作，重定向回店铺列表页面
                 map.put("redirect", true);
-                map.put("url", "/o2o/shopadmin/getShopList");
+                map.put("url", "/myo2o/shopadmin/shoplist");
             } else {
                 Shop currentShop = (Shop) currentShopObj;
                 map.put("redirect", false);
