@@ -4,3 +4,6 @@
 2020-02-10 13:15:12.841[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==>  Preparing: select product_category_id, product_category_name, priority, create_time, shop_id from tb_product_category WHERE shop_id = ? order by priority desc 
 2020-02-10 13:15:12.872[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==> Parameters: 1(Long)
 2020-02-10 13:15:12.893[main]DEBUG c.h.w.d.P.queryProductCategoryList - <==      Total: 3
+2020-02-10 14:59:12.929[main]DEBUG c.h.w.d.P.batchInsertProductCategory - ==>  Preparing: INSERT INTO tb_product_category(product_category_name,shop_id,priority,create_time) VALUES ( ?, ?, ?, ? ) , ( ?, ?, ?, ? ) 
+2020-02-10 14:59:12.977[main]DEBUG c.h.w.d.P.batchInsertProductCategory - ==> Parameters: ??????1(String), 1(Long), 1(Integer), 2020-02-10 14:59:12.464(Timestamp), ??????2(String), 1(Long), 2(Integer), 2020-02-10 14:59:12.464(Timestamp)
+2020-02-10 14:59:13.017[main]DEBUG c.h.w.d.P.batchInsertProductCategory - <==    Updates: 2

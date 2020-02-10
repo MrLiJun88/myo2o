@@ -1,17 +1,21 @@
 package com.hyit.www.controller.shopadmin;
 
+import com.hyit.www.dto.ProductCategoryExecution;
 import com.hyit.www.dto.Result;
 import com.hyit.www.entity.ProductCategory;
 import com.hyit.www.entity.Shop;
+import com.hyit.www.enums.OperationStatusEnum;
 import com.hyit.www.enums.ProductCategoryStateEnum;
+import com.hyit.www.exceptions.ProductCategoryOperationException;
 import com.hyit.www.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author LiJun
@@ -48,5 +52,46 @@ public class ProductCategoryManagementController {
             ps = ProductCategoryStateEnum.NULL_SHOP;
             return new Result<>(false, ps.getState(), ps.getStateInfo());
         }
+    }
+
+    /**
+     * 批量添加产品类型信息
+     */
+    @PostMapping(value = "/addProductCategorys")
+    public Map<String, Object> addProductCategorys(@RequestBody List<ProductCategory> productCategoryList,
+                                                   HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<>(16);
+        // 列表不为空
+        if (productCategoryList != null && !productCategoryList.isEmpty()) {
+            // 从session中获取店铺信息，尽量减少对前端的依赖
+            Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+            if (currentShop != null && currentShop.getShopId() != null) {
+                for (ProductCategory productCategory : productCategoryList) {
+                    productCategory.setShopId(currentShop.getShopId());
+                    productCategory.setCreateTime(new Date());
+                }
+            }
+            try {
+                // 批量插入
+                ProductCategoryExecution productCategoryExecution = productCategoryService
+                        .batchAddProductCategory(productCategoryList);
+                if (productCategoryExecution.getState() == OperationStatusEnum.SUCCESS.getState()) {
+                    modelMap.put("success", true);
+                    // 同时也将新增成功的数量返回给前台
+                    modelMap.put("effectNum", productCategoryExecution.getCount());
+                } else {
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", productCategoryExecution.getStateInfo());
+                }
+            } catch (ProductCategoryOperationException e) {
+                modelMap.put("success", false);
+                modelMap.put("errMsg", e.toString());
+                return modelMap;
+            }
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", ProductCategoryStateEnum.EMPETY_LIST.getStateInfo());
+        }
+        return modelMap;
     }
 }
