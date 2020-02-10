@@ -51,4 +51,31 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
             return new ProductCategoryExecution(ProductCategoryStateEnum.EMPETY_LIST);
         }
     }
+
+
+    @Override
+    @Transient
+    public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
+        /** 删除商品类别时将商品记录中的类别项置空
+        try {
+            int effectNum = productDao.updateProductCategoryToNull(productCategoryId);
+            if (effectNum < 0) {
+                throw new ProductCategoryOperationException(ProductCategoryStateEnum.EDIT_ERROR.getStateInfo());
+            }
+        } catch (ProductCategoryOperationException e) {
+            throw new ProductCategoryOperationException("deleteProductCategory error" + e.getMessage());
+        } */
+
+        // 删除商品类别
+        try {
+            int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
+            if (effectedNum <= 0) {
+                throw new ProductCategoryOperationException(ProductCategoryStateEnum.DELETE_ERROR.getStateInfo());
+            } else {
+                return new ProductCategoryExecution(OperationStatusEnum.SUCCESS, null, effectedNum);
+            }
+        } catch (Exception e) {
+            throw new ProductCategoryOperationException("deleteProductCategory error" + e.getMessage());
+        }
+    }
 }

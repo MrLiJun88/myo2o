@@ -94,4 +94,44 @@ public class ProductCategoryManagementController {
         }
         return modelMap;
     }
+
+    /**
+     * 删除指定的商品类别信息
+     * @param productCategoryId
+     * @param request
+     */
+    @RequestMapping(value = "/removeProductCategory", method = RequestMethod.POST)
+    public Map<String, Object> removeProductCategory(Long productCategoryId, HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<>(16);
+        if (productCategoryId != null && productCategoryId > 0) {
+            // 从session中获取shop的信息
+            Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+            if (currentShop != null && currentShop.getShopId() != null) {
+                try {
+                    // 删除
+                    Long shopId = currentShop.getShopId();
+                    ProductCategoryExecution pce = productCategoryService.deleteProductCategory(productCategoryId,
+                            shopId);
+                    if (pce.getState() == OperationStatusEnum.SUCCESS.getState()) {
+                        modelMap.put("success", true);
+                    } else {
+                        modelMap.put("success", false);
+                        modelMap.put("errMsg", pce.getStateInfo());
+                    }
+                } catch (ProductCategoryOperationException e) {
+                    e.printStackTrace();
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", e.getMessage());
+                    return modelMap;
+                }
+            } else {
+                modelMap.put("success", false);
+                modelMap.put("errMsg", ProductCategoryStateEnum.NULL_SHOP.getStateInfo());
+            }
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", ProductCategoryStateEnum.EMPETY_LIST.getStateInfo());
+        }
+        return modelMap;
+    }
 }

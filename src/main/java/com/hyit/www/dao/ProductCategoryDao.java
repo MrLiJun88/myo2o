@@ -1,6 +1,7 @@
 package com.hyit.www.dao;
 
 import com.hyit.www.entity.ProductCategory;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,11 @@ public interface ProductCategoryDao {
      */
     int batchInsertProductCategory(List<ProductCategory> productCategoryList);
 
+    /**
+     * 删除指定的商品类别
+     * @param productCategoryId 商品类别Id
+     * @param shopId            店铺Id,使删除操作更安全
+     * @return
+     */
+    int deleteProductCategory(@Param("productCategoryId") long productCategoryId, @Param("shopId") long shopId);
 }
