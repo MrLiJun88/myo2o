@@ -3,10 +3,12 @@ package com.hyit.www.controller.shopadmin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyit.www.dto.ProductExecution;
 import com.hyit.www.entity.Product;
+import com.hyit.www.entity.ProductCategory;
 import com.hyit.www.entity.Shop;
 import com.hyit.www.enums.OperationStatusEnum;
 import com.hyit.www.enums.ProductStateEnum;
 import com.hyit.www.exceptions.ProductOperationException;
+import com.hyit.www.service.ProductCategoryService;
 import com.hyit.www.service.ProductService;
 import com.hyit.www.util.CodeUtil;
 import com.hyit.www.util.HttpServletRequestUtil;
@@ -34,6 +36,8 @@ public class ProductManagementController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductCategoryService productCategoryService;
 
     /**
      *  支持上传商品详情图的最大数量
@@ -125,10 +129,105 @@ public class ProductManagementController {
     }
 
     /**
+     * 通过商品Id获取商品信息
+     * @param productId
+     */
+    @GetMapping(value = "/getProductById")
+    public Map<String, Object> getProductById(@RequestParam Long productId) {
+        Map<String, Object> modelMap = new HashMap<>(16);
+        // 非空判断
+        if (productId != null && productId > 0) {
+            // 获取商品信息
+            Product product = productService.getProductById(productId);
+            // 获取该店铺下商品类别列表
+            List<ProductCategory> productCategoryList = productCategoryService
+                    .getProductCategoryList(product.getShop().getShopId());
+            modelMap.put("product", product);
+            modelMap.put("productCategoryList", productCategoryList);
+            modelMap.put("success", true);
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", ProductStateEnum.PRODUCT_ID_EMPTY.getStateInfo());
+        }
+        return modelMap;
+    }
+
+    /**
+     * 修改店铺信息
+     * @param request
+     */
+    @PostMapping(value = "/modifyProduct")
+    public Map<String, Object> modifyProduct(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<>(16);
+        // Step1:检验验证码，在点击商品下架时不需要输入验证码，编辑时需要输入验证码
+        boolean statusChange = HttpServletRequestUtil.getBoolean(request, "statusChange");
+        // 状态改变且验证码错误时，返回
+        if (!statusChange && !CodeUtil.checkVerifyCode(request)) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", OperationStatusEnum.VERIFYCODE_ERROR.getStateInfo());
+            return modelMap;
+        }
+        // Step2：参数第一个参数：商品信息
+        String productStr = null;
+        Product product = null;
+        //将json转换为pojo
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            productStr = HttpServletRequestUtil.getString(request, "productStr");
+            product = mapper.readValue(productStr, Product.class);
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.getMessage());
+            return modelMap;
+        }
+        // Step3: 商品缩略图 和 商品详情图 构造调用service层的第二个参数和第三个参数
+        // 图片缩略图
+        MultipartFile productImg = null;
+        // 商品详情图
+        List<MultipartFile> productDetailImgList = new ArrayList<>();
+        try {
+            // 创建一个通用的多部分解析器
+            MultipartResolver multipartResolver = new CommonsMultipartResolver(
+                    request.getSession().getServletContext());
+            // 判断 request 是否有文件上传,即多部分请求
+            if (multipartResolver.isMultipart(request)) {
+                productImg = handleImage(request, productDetailImgList);
+            }
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.getMessage());
+            return modelMap;
+        }
+        // Step4：调用service层店铺修改方法
+        if (product != null) {
+            try {
+                // 从session中获取shop信息，不依赖前端的传递更加安全
+                Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+                product.setShop(currentShop);
+                // 调用modifyProduct
+                ProductExecution pe = productService.modifyProduct(product, productImg, productDetailImgList);
+                if (pe.getState() == OperationStatusEnum.SUCCESS.getState()) {
+                    modelMap.put("success", true);
+                } else {
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", pe.getStateInfo());
+                }
+            } catch (ProductOperationException e) {
+                modelMap.put("success", false);
+                modelMap.put("errMsg", e.toString());
+                return modelMap;
+            }
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", ProductStateEnum.PRODUCT_EMPTY.getStateInfo());
+        }
+        return modelMap;
+    }
+
+    /**
      * 处理图片私有方法
      * @param request
      * @param productDetailImgList
-     * @return
      */
     private MultipartFile handleImage(HttpServletRequest request, List<MultipartFile> productDetailImgList) {
         MultipartHttpServletRequest multipartRequest;
