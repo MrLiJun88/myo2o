@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ShopAdminController {
 
     @RequestMapping(value = "/shopoperation")
-    public String shopOperation(){
+    public String shopOperation() {
         return "shop/shopOperation";
     }
 
     @RequestMapping(value = "/shoplist")
-    public String shopList(){
+    public String shopList() {
         return "shop/shopList";
     }
 
@@ -35,4 +35,8 @@ public class ShopAdminController {
         return "shop/productCategoryManagement";
     }
 
+    @GetMapping(value = "/productoperation")
+    public String productOperation() {
+        return "shop/productOperation";
+    }
 }
