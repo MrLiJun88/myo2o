@@ -11,6 +11,7 @@ import com.hyit.www.util.PageCalculator;
 import com.hyit.www.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.beans.Transient;
@@ -24,7 +25,7 @@ public class ShopServiceImpl implements ShopService {
     @Autowired
     private ShopDao shopDao;
 
-    @Transient
+    @Transactional
     @Override
     public ShopExecution addShop(Shop shop, MultipartFile shopImg) {
         /**空值判断*/
@@ -64,7 +65,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    @Transient
+    @Transactional
     public Shop getByShopId(long shopId) {
         return shopDao.queryByShopId(shopId);
     }
@@ -73,7 +74,7 @@ public class ShopServiceImpl implements ShopService {
      * 更新店铺信息
      */
     @Override
-    @Transient
+    @Transactional
     public ShopExecution modifyShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {
 
         if(null == shop || null == shop.getShopId()){

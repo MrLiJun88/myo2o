@@ -9,6 +9,7 @@ import com.hyit.www.exceptions.ProductCategoryOperationException;
 import com.hyit.www.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.beans.Transient;
 import java.util.List;
@@ -25,13 +26,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 
     @Override
-    @Transient
+    @Transactional
     public List<ProductCategory> getProductCategoryList(Long shopId) {
         return productCategoryDao.queryProductCategoryList(shopId);
     }
 
     @Override
-    @Transient
+    @Transactional
     public ProductCategoryExecution batchAddProductCategory(List<ProductCategory> productCategoryList) throws ProductCategoryOperationException {
         // 列表不为空
         if (productCategoryList != null && !productCategoryList.isEmpty()) {
@@ -54,7 +55,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 
     @Override
-    @Transient
+    @Transactional
     public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
         /** 删除商品类别时将商品记录中的类别项置空
         try {

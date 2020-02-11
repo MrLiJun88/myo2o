@@ -2,10 +2,13 @@ package com.hyit.www.util;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
+import org.apache.commons.io.IOUtils;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -87,5 +90,44 @@ public class ImageUtil {
             // 删除文件或文件夹,则直接删除
             fileOrPath.delete();
         }
+    }
+
+    /**
+     * 处理商品缩略图
+     * @param thumbnail  Spring自带的文件处理对象
+     * @param targetAddr 图片存储路径
+     * @return
+     */
+    public static String generateProductImg(MultipartFile thumbnail, String targetAddr) {
+        // 获取随机文件名，防止文件重名
+        String realFileName = getRandomFileName();
+        // 获取文件扩展名
+        String extension = getFileExtension(thumbnail);
+        // 在文件夹不存在时创建
+        makeDirPath(targetAddr);
+        String relativeAddr = targetAddr + realFileName + extension;
+        File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
+        try {
+            Thumbnails.of(thumbnail.getInputStream()).size(337, 640)
+                    .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "watermark.jpg")), 0.5f)
+                    .outputQuality(0.9f).toFile(dest);
+        } catch (IOException e) {
+            throw new RuntimeException("创建缩略图失败：" + e.toString());
+        }
+        return relativeAddr;
+    }
+
+    /**
+     * filePath to MultipartFile
+     *
+     * @param filePath
+     * @throws IOException
+     */
+    public static MultipartFile path2MultipartFile(String filePath) throws IOException {
+        File file = new File(filePath);
+        FileInputStream input = new FileInputStream(file);
+        MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
+                IOUtils.toByteArray(input));
+        return multipartFile;
     }
 }
