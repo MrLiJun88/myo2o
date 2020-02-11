@@ -45,7 +45,7 @@ public class ProductDaoTest extends BaseTest {
 
     @Test
     public void testQueryProductByProductId() throws Exception {
-        Long productId = 8L;
+        Long productId = 9L;
         Product product = productDao.queryProductById(productId);
         System.out.println(product);
         System.out.println("productImgSize：" + product.getProductImgList().size());
@@ -54,14 +54,14 @@ public class ProductDaoTest extends BaseTest {
     @Test
     public void testUpdateProduct(){
         Product product = new Product();
-        product.setProductId(1L);
+        product.setProductId(9L);
         ProductCategory productCategory = new ProductCategory();
         productCategory.setProductCategoryId(1L);
         Shop shop = new Shop();
         shop.setShopId(1L);
         product.setShop(shop);
         product.setProductCategory(productCategory);
-        product.setProductName("测试修改商品");
+        product.setProductName("你喜欢就好");
         int effectNum = productDao.updateProduct(product);
         System.out.println("effectNum:" + effectNum);
     }

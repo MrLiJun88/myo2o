@@ -35,8 +35,8 @@ public class ProductServiceTest extends BaseTest {
         ProductCategory productCategory = new ProductCategory();
         productCategory.setProductCategoryId(1L);
         product.setProductCategory(productCategory);
-        product.setProductName("²âÊÔÉÌÆ·1");
-        product.setProductDesc("²âÊÔÉÌÆ·1ÃèÊö");
+        product.setProductName("æµ‹è¯•å•†å“1");
+        product.setProductDesc("æµ‹è¯•å•†å“1æè¿°");
         product.setPriority(20);
         product.setEnableStatus(EnableStatusEnum.AVAILABLE.getState());
         product.setLastEditTime(new Date());
@@ -51,6 +51,37 @@ public class ProductServiceTest extends BaseTest {
         productImgList.add(productImg2);
         ProductExecution se = productService.addProduct(product, ImageUtil.path2MultipartFile(filePath0),
                 productImgList);
+    }
+
+    @Test
+    public void testModifyProduct() throws IOException {
+        Product product = new Product();
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        product.setShop(shop);
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setProductCategoryId(1L);
+        product.setProductId(9L);
+        product.setProductCategory(productCategory);
+        product.setProductName("æµ‹è¯•å•†å“2");
+        product.setProductDesc("æµ‹è¯•å•†å“2æè¿°");
+        product.setPriority(22);
+        product.setEnableStatus(EnableStatusEnum.AVAILABLE.getState());
+        product.setLastEditTime(new Date());
+        product.setCreateTime(new Date());
+        String filePath0 = "C:\\Users\\Administrator\\Desktop\\Gproject\\1.jpg";
+        List<MultipartFile> productImgList = new ArrayList<>();
+        String filePath1 = "C:\\Users\\Administrator\\Desktop\\Gproject\\2.jpg";
+        MultipartFile productImg1 = ImageUtil.path2MultipartFile(filePath1);
+        productImgList.add(productImg1);
+        String filePath2 = "C:\\Users\\Administrator\\Desktop\\Gproject\\3.jpg";
+        MultipartFile productImg2 = ImageUtil.path2MultipartFile(filePath2);
+        productImgList.add(productImg2);
+
+        ProductExecution se = productService.modifyProduct(product, ImageUtil.path2MultipartFile(filePath0),
+                productImgList);
+        System.out.println("ProductExecution.state" + se.getState());
+        System.out.println("ProductExecution.stateInfo" + se.getStateInfo());
     }
 
 }
