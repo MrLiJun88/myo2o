@@ -11,6 +11,7 @@ import com.hyit.www.enums.ProductStateEnum;
 import com.hyit.www.exceptions.ProductOperationException;
 import com.hyit.www.service.ProductService;
 import com.hyit.www.util.ImageUtil;
+import com.hyit.www.util.PageCalculator;
 import com.hyit.www.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -122,6 +123,22 @@ public class ProductServiceImpl implements ProductService {
         } else {
             return new ProductExecution(ProductStateEnum.EMPTY);
         }
+    }
+
+    @Override
+    @Transactional
+    public ProductExecution getProductList(Product productCondition, int pageIndex, int pageSize) {
+        // 将页码转换为数据库的行数
+        int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+        // 获取商品列表分页信息
+        List<Product> productList = productDao.selectProductList(productCondition, rowIndex, pageSize);
+        // 获取商品总数
+        int productCount = productDao.selectProductCount(productCondition);
+        // 构建返回对象,并设值
+        ProductExecution productExecution = new ProductExecution();
+        productExecution.setCount(productCount);
+        productExecution.setProductList(productList);
+        return productExecution;
     }
 
     /**

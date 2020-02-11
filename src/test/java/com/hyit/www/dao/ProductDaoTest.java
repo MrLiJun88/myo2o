@@ -65,4 +65,23 @@ public class ProductDaoTest extends BaseTest {
         int effectNum = productDao.updateProduct(product);
         System.out.println("effectNum:" + effectNum);
     }
+
+    @Test
+    public void testSelectProductList(){
+        Product productCondition = new Product();
+        // 分页查询
+        List<Product> list = productDao.selectProductList(productCondition, 0, 5);
+        System.out.println("list.size:" + list.size());
+        // 查询总数
+        int productCount = productDao.selectProductCount(productCondition);
+        System.out.println("productCount:" + productCount);
+        // 使用条件查询
+        productCondition.setProductName("迪");
+        // 条件分页查询
+        List<Product> conditionList = productDao.selectProductList(productCondition, 0, 5);
+        System.out.println("conditionList.size:" + conditionList.size());
+        // 条件查询总数
+        int conditionProductCount = productDao.selectProductCount(productCondition);
+        System.out.println("conditionProductCount:" + conditionProductCount);
+    }
 }

@@ -1,6 +1,9 @@
 package com.hyit.www.dao;
 
 import com.hyit.www.entity.Product;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author LiJun
@@ -25,5 +28,20 @@ public interface ProductDao {
      * @return
      */
     int updateProduct(Product product);
+
+    /**
+     * 查询商品列表并分页，输入条件：商品名（模糊），商品状态，店铺Id，商品类别
+     * @param productCondition 查询条件
+     * @param rowIndex         行数
+     * @param pageSize         每页数
+     */
+    List<Product> selectProductList(@Param("productCondition") Product productCondition, @Param("rowIndex") int rowIndex,
+                                    @Param("pageSize") int pageSize);
+
+    /**
+     * 根据条件查询商品总数
+     * @param productCondition 查询条件
+     */
+    int selectProductCount(@Param("productCondition") Product productCondition);
 
 }

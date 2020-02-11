@@ -86,3 +86,15 @@
 2020-02-11 21:03:52.903[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - ==>  Preparing: UPDATE tb_product SET product_name = ?, product_desc = ?, img_addr = ?, priority = ?, create_time = ?, last_edit_time = ?, enable_status = ?, product_category_id = ? WHERE product_id = ? AND shop_id=? 
 2020-02-11 21:03:52.904[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - ==> Parameters: ≤‚ ‘…Ã∆∑2(String), ≤‚ ‘…Ã∆∑2√Ë ˆ(String), \upload\item\shop1\2020021121035221485.jpg(String), 22(Integer), 2020-02-11 21:03:51.583(Timestamp), 2020-02-11 21:03:52.062(Timestamp), 1(Integer), 1(Long), 9(Long), 1(Long)
 2020-02-11 21:03:52.907[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - <==    Updates: 1
+2020-02-11 21:34:27.209[main]DEBUG com.hyit.www.dao.ProductDao.selectProductList - ==>  Preparing: SELECT product_id, product_name, product_desc, img_addr, normal_price, promotion_price, priority, create_time, last_edit_time, enable_status, product_category_id, shop_id FROM tb_product ORDER BY priority DESC LIMIT ?,?; 
+2020-02-11 21:34:27.254[main]DEBUG com.hyit.www.dao.ProductDao.selectProductList - ==> Parameters: 0(Integer), 5(Integer)
+2020-02-11 21:34:27.286[main]DEBUG com.hyit.www.dao.ProductDao.selectProductList - <==      Total: 2
+2020-02-11 21:34:27.295[main]DEBUG com.hyit.www.dao.ProductDao.selectProductCount - ==>  Preparing: SELECT count(1) FROM tb_product 
+2020-02-11 21:34:27.295[main]DEBUG com.hyit.www.dao.ProductDao.selectProductCount - ==> Parameters: 
+2020-02-11 21:34:27.296[main]DEBUG com.hyit.www.dao.ProductDao.selectProductCount - <==      Total: 1
+2020-02-11 21:34:27.299[main]DEBUG com.hyit.www.dao.ProductDao.selectProductList - ==>  Preparing: SELECT product_id, product_name, product_desc, img_addr, normal_price, promotion_price, priority, create_time, last_edit_time, enable_status, product_category_id, shop_id FROM tb_product WHERE product_name like '%µœ%' ORDER BY priority DESC LIMIT ?,?; 
+2020-02-11 21:34:27.300[main]DEBUG com.hyit.www.dao.ProductDao.selectProductList - ==> Parameters: 0(Integer), 5(Integer)
+2020-02-11 21:34:27.303[main]DEBUG com.hyit.www.dao.ProductDao.selectProductList - <==      Total: 1
+2020-02-11 21:34:27.304[main]DEBUG com.hyit.www.dao.ProductDao.selectProductCount - ==>  Preparing: SELECT count(1) FROM tb_product WHERE product_name like '%µœ%' 
+2020-02-11 21:34:27.304[main]DEBUG com.hyit.www.dao.ProductDao.selectProductCount - ==> Parameters: 
+2020-02-11 21:34:27.305[main]DEBUG com.hyit.www.dao.ProductDao.selectProductCount - <==      Total: 1
