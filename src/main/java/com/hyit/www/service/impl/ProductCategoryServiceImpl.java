@@ -1,6 +1,7 @@
 package com.hyit.www.service.impl;
 
 import com.hyit.www.dao.ProductCategoryDao;
+import com.hyit.www.dao.ProductDao;
 import com.hyit.www.dto.ProductCategoryExecution;
 import com.hyit.www.entity.ProductCategory;
 import com.hyit.www.enums.OperationStatusEnum;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.Transient;
 import java.util.List;
 
 /**
@@ -23,6 +23,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Autowired
     private ProductCategoryDao productCategoryDao;
+    @Autowired
+    private ProductDao productDao;
 
 
     @Override
@@ -57,7 +59,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     @Transactional
     public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
-        /** 删除商品类别时将商品记录中的类别项置空
+        /** 删除商品类别时将商品记录中的类别项置空*/
         try {
             int effectNum = productDao.updateProductCategoryToNull(productCategoryId);
             if (effectNum < 0) {
@@ -65,8 +67,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
             }
         } catch (ProductCategoryOperationException e) {
             throw new ProductCategoryOperationException("deleteProductCategory error" + e.getMessage());
-        } */
-
+        }
         // 删除商品类别
         try {
             int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);

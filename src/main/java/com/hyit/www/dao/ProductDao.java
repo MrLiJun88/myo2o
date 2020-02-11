@@ -44,4 +44,12 @@ public interface ProductDao {
      */
     int selectProductCount(@Param("productCondition") Product productCondition);
 
+    /**
+     * 删除商品类别时将商品记录中的类别项置空
+     *
+     * @param productCategoryId
+     * @return
+     */
+    int updateProductCategoryToNull(long productCategoryId);
+
 }
