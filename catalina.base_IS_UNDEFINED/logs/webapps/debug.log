@@ -1,24 +1,10 @@
-2020-02-10 13:03:39.915[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==>  Preparing: select product_category_id, product_category_name, priority, create_time, shop_id from tb_product_category WHERE shop_id = ? order by priority desc 
-2020-02-10 13:03:39.971[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==> Parameters: 1(Long)
-2020-02-10 13:03:40.003[main]DEBUG c.h.w.d.P.queryProductCategoryList - <==      Total: 3
-2020-02-10 13:15:12.841[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==>  Preparing: select product_category_id, product_category_name, priority, create_time, shop_id from tb_product_category WHERE shop_id = ? order by priority desc 
-2020-02-10 13:15:12.872[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==> Parameters: 1(Long)
-2020-02-10 13:15:12.893[main]DEBUG c.h.w.d.P.queryProductCategoryList - <==      Total: 3
-2020-02-10 14:59:12.929[main]DEBUG c.h.w.d.P.batchInsertProductCategory - ==>  Preparing: INSERT INTO tb_product_category(product_category_name,shop_id,priority,create_time) VALUES ( ?, ?, ?, ? ) , ( ?, ?, ?, ? ) 
-2020-02-10 14:59:12.977[main]DEBUG c.h.w.d.P.batchInsertProductCategory - ==> Parameters: ??????1(String), 1(Long), 1(Integer), 2020-02-10 14:59:12.464(Timestamp), ??????2(String), 1(Long), 2(Integer), 2020-02-10 14:59:12.464(Timestamp)
-2020-02-10 14:59:13.017[main]DEBUG c.h.w.d.P.batchInsertProductCategory - <==    Updates: 2
-2020-02-10 15:31:44.253[main]DEBUG c.h.w.d.P.batchInsertProductCategory - ==>  Preparing: INSERT INTO tb_product_category(product_category_name,shop_id,priority,create_time) VALUES ( ?, ?, ?, ? ) , ( ?, ?, ?, ? ) 
-2020-02-10 15:31:44.317[main]DEBUG c.h.w.d.P.batchInsertProductCategory - ==> Parameters: ??????1(String), 1(Long), 1(Integer), 2020-02-10 15:31:43.65(Timestamp), ??????2(String), 1(Long), 2(Integer), 2020-02-10 15:31:43.65(Timestamp)
-2020-02-10 15:31:44.405[main]DEBUG c.h.w.d.P.batchInsertProductCategory - <==    Updates: 2
-2020-02-10 15:34:30.221[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==>  Preparing: select product_category_id, product_category_name, priority, create_time, shop_id from tb_product_category WHERE shop_id = ? order by priority desc 
-2020-02-10 15:34:30.260[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==> Parameters: 1(Long)
-2020-02-10 15:34:30.288[main]DEBUG c.h.w.d.P.queryProductCategoryList - <==      Total: 4
-2020-02-10 15:34:30.297[main]DEBUG c.h.w.dao.ProductCategoryDao.deleteProductCategory - ==>  Preparing: DELETE FROM tb_product_category WHERE product_category_id = ? and shop_id = ? 
-2020-02-10 15:34:30.297[main]DEBUG c.h.w.dao.ProductCategoryDao.deleteProductCategory - ==> Parameters: 14(Long), 1(Long)
-2020-02-10 15:34:30.374[main]DEBUG c.h.w.dao.ProductCategoryDao.deleteProductCategory - <==    Updates: 1
-2020-02-10 15:34:30.375[main]DEBUG c.h.w.dao.ProductCategoryDao.deleteProductCategory - ==>  Preparing: DELETE FROM tb_product_category WHERE product_category_id = ? and shop_id = ? 
-2020-02-10 15:34:30.375[main]DEBUG c.h.w.dao.ProductCategoryDao.deleteProductCategory - ==> Parameters: 13(Long), 1(Long)
-2020-02-10 15:34:30.390[main]DEBUG c.h.w.dao.ProductCategoryDao.deleteProductCategory - <==    Updates: 1
-2020-02-10 15:39:41.246[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==>  Preparing: select product_category_id, product_category_name, priority, create_time, shop_id from tb_product_category WHERE shop_id = ? order by priority desc 
-2020-02-10 15:39:41.286[main]DEBUG c.h.w.d.P.queryProductCategoryList - ==> Parameters: 1(Long)
-2020-02-10 15:39:41.315[main]DEBUG c.h.w.d.P.queryProductCategoryList - <==      Total: 2
+2020-02-11 12:00:00.685[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img ( img_addr, img_desc, product_id, priority, create_time ) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
+2020-02-11 12:00:00.739[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: ??1(String), ??????1(String), 1(Long), 1(Integer), 2020-02-11 11:59:59.916(Timestamp), ??2(String), ??????2(String), 1(Long), 2(Integer), 2020-02-11 11:59:59.916(Timestamp)
+2020-02-11 12:00:32.181[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img ( img_addr, img_desc, product_id, priority, create_time ) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
+2020-02-11 12:00:32.223[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: ??1(String), ??????1(String), 1(Long), 1(Integer), 2020-02-11 12:00:31.746(Timestamp), ??2(String), ??????2(String), 1(Long), 2(Integer), 2020-02-11 12:00:31.746(Timestamp)
+2020-02-11 12:06:02.615[main]DEBUG com.hyit.www.dao.ProductDao.insertProduct - ==>  Preparing: INSERT INTO tb_product(product_category_id,shop_id,product_name,product_desc, img_addr,normal_price,promotion_price,priority,create_time,enable_status,last_edit_time) VALUES (?,?,?,?,?, ?,?,?,?,?,?) 
+2020-02-11 12:06:02.665[main]DEBUG com.hyit.www.dao.ProductDao.insertProduct - ==> Parameters: 1(Long), 1(Long), 1(String), 11(String), 111(String), 1111(String), 11111(String), 1(Integer), 2020-02-11 12:06:02.16(Timestamp), 1(Integer), null
+2020-02-11 12:06:02.773[main]DEBUG com.hyit.www.dao.ProductDao.insertProduct - <==    Updates: 1
+2020-02-11 12:09:19.914[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img ( img_addr, img_desc, product_id, priority, create_time ) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
+2020-02-11 12:09:19.962[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: ??1(String), ??????1(String), 1(Long), 1(Integer), 2020-02-11 12:09:19.449(Timestamp), ??2(String), ??????2(String), 1(Long), 2(Integer), 2020-02-11 12:09:19.449(Timestamp)
+2020-02-11 12:09:20.009[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
