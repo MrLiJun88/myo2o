@@ -20,7 +20,7 @@ public class ShopAdminController {
     }
 
     /**
-     * 店铺管理页面
+     * 店铺管理
      */
     @RequestMapping(value = "/shopmanagement", method = RequestMethod.GET)
     public String shopManagement() {
@@ -28,7 +28,7 @@ public class ShopAdminController {
     }
 
     /**
-     * 商品类别管理页面
+     * 商品类别管理
      */
     @GetMapping(value = "/productcategorymanagement")
     public String productCategoryManagement() {
@@ -38,5 +38,13 @@ public class ShopAdminController {
     @GetMapping(value = "/productoperation")
     public String productOperation() {
         return "shop/productOperation";
+    }
+
+    /**
+     * 商品管理页面
+     */
+    @RequestMapping(value = "/productmanagement", method = RequestMethod.GET)
+    public String productManagement() {
+        return "shop/productManagement";
     }
 }
