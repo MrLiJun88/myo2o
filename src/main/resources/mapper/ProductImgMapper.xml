@@ -22,4 +22,11 @@
             )
         </foreach>
     </insert>
+    <!-- 根据productId删除相关的商品图片-->
+    <delete id="deleteProductImgByProductId" parameterType="long">
+        DELETE FROM
+			tb_product_img
+		WHERE
+			product_id = #{produtId}
+    </delete>
 </mapper>

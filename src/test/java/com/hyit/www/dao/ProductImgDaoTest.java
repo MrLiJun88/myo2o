@@ -41,4 +41,12 @@ public class ProductImgDaoTest extends BaseTest {
         int effectNum = productImgDao.batchInsertProductImg(productImgs);
         System.out.println("effectNum:" + effectNum);
     }
+
+    @Test
+    public void testDeleteProductImgByProductId(){
+        // 删除商品详情记录
+        Long productId = 8L;
+        int effectNum = productImgDao.deleteProductImgByProductId(productId);
+        System.out.println("effectNum:" + effectNum);
+    }
 }

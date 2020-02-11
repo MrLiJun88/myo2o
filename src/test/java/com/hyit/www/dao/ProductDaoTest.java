@@ -42,4 +42,27 @@ public class ProductDaoTest extends BaseTest {
         int effectNum = productDao.insertProduct(product);
         System.out.println("effectNum:" + effectNum);
     }
+
+    @Test
+    public void testQueryProductByProductId() throws Exception {
+        Long productId = 8L;
+        Product product = productDao.queryProductById(productId);
+        System.out.println(product);
+        System.out.println("productImgSize：" + product.getProductImgList().size());
+    }
+
+    @Test
+    public void testUpdateProduct(){
+        Product product = new Product();
+        product.setProductId(1L);
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setProductCategoryId(1L);
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        product.setShop(shop);
+        product.setProductCategory(productCategory);
+        product.setProductName("测试修改商品");
+        int effectNum = productDao.updateProduct(product);
+        System.out.println("effectNum:" + effectNum);
+    }
 }

@@ -14,3 +14,21 @@
 2020-02-11 13:25:33.264[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img ( img_addr, img_desc, product_id, priority, create_time ) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
 2020-02-11 13:25:33.265[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\item\shop1\2020021113253320835.jpg(String), null, 2(Long), null, 2020-02-11 13:25:33.193(Timestamp), \upload\item\shop1\2020021113253399160.jpg(String), null, 2(Long), null, 2020-02-11 13:25:33.241(Timestamp)
 2020-02-11 13:25:33.267[main]DEBUG c.hyit.www.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
+2020-02-11 20:27:51.583[main]DEBUG com.hyit.www.dao.ProductDao.queryProductById - ==>  Preparing: SELECT p.product_id, p.product_name, p.product_desc, p.img_addr, p.normal_price, p.promotion_price, p.priority, p.create_time, p.last_edit_time, p.enable_status, p.product_category_id, p.shop_id, pi.product_img_id, pi.img_addr as pi_img_addr, pi.img_desc as pi_img_desc, pi.priority, pi.create_time FROM tb_product p LEFT JOIN tb_product_img pi ON p.product_id =pi.product_id WHERE p.product_id = ? ORDER BY pi.priority ASC 
+2020-02-11 20:27:51.627[main]DEBUG com.hyit.www.dao.ProductDao.queryProductById - ==> Parameters: 1(Long)
+2020-02-11 20:27:51.655[main]DEBUG com.hyit.www.dao.ProductDao.queryProductById - <==      Total: 1
+2020-02-11 20:28:18.793[main]DEBUG com.hyit.www.dao.ProductDao.queryProductById - ==>  Preparing: SELECT p.product_id, p.product_name, p.product_desc, p.img_addr, p.normal_price, p.promotion_price, p.priority, p.create_time, p.last_edit_time, p.enable_status, p.product_category_id, p.shop_id, pi.product_img_id, pi.img_addr as pi_img_addr, pi.img_desc as pi_img_desc, pi.priority, pi.create_time FROM tb_product p LEFT JOIN tb_product_img pi ON p.product_id =pi.product_id WHERE p.product_id = ? ORDER BY pi.priority ASC 
+2020-02-11 20:28:18.837[main]DEBUG com.hyit.www.dao.ProductDao.queryProductById - ==> Parameters: 8(Long)
+2020-02-11 20:28:18.857[main]DEBUG com.hyit.www.dao.ProductDao.queryProductById - <==      Total: 1
+2020-02-11 20:29:47.604[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - ==>  Preparing: UPDATE tb_product SET product_name = ?, product_category_id = ? WHERE product_id = ? AND shop_id=? 
+2020-02-11 20:29:47.636[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - ==> Parameters: ??????????(String), 1(Long), 1(Long), 1(Long)
+2020-02-11 20:29:47.754[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - <==    Updates: 1
+2020-02-11 20:30:11.227[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - ==>  Preparing: UPDATE tb_product SET product_name = ?, product_category_id = ? WHERE product_id = ? AND shop_id=? 
+2020-02-11 20:30:11.272[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - ==> Parameters: ≤‚ ‘–ﬁ∏ƒ…Ã∆∑(String), 1(Long), 1(Long), 1(Long)
+2020-02-11 20:30:11.504[main]DEBUG com.hyit.www.dao.ProductDao.updateProduct - <==    Updates: 1
+2020-02-11 20:31:24.903[main]DEBUG c.h.w.d.ProductImgDao.deleteProductImgByProductId - ==>  Preparing: DELETE FROM tb_product_img WHERE product_id = ? 
+2020-02-11 20:31:24.933[main]DEBUG c.h.w.d.ProductImgDao.deleteProductImgByProductId - ==> Parameters: 1(Long)
+2020-02-11 20:31:24.934[main]DEBUG c.h.w.d.ProductImgDao.deleteProductImgByProductId - <==    Updates: 0
+2020-02-11 20:31:47.566[main]DEBUG c.h.w.d.ProductImgDao.deleteProductImgByProductId - ==>  Preparing: DELETE FROM tb_product_img WHERE product_id = ? 
+2020-02-11 20:31:47.603[main]DEBUG c.h.w.d.ProductImgDao.deleteProductImgByProductId - ==> Parameters: 8(Long)
+2020-02-11 20:31:47.660[main]DEBUG c.h.w.d.ProductImgDao.deleteProductImgByProductId - <==    Updates: 1

@@ -2,12 +2,14 @@ package com.hyit.www.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class Product {
     private Long productId;
     private String productName;
