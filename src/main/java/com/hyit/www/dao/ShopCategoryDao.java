@@ -8,4 +8,10 @@ import java.util.List;
 public interface ShopCategoryDao {
     /**获取所有的商铺类别*/
     List<ShopCategory> queryShopCategory(@Param("shopCategoryCondition")ShopCategory shopCategoryCondition);
+
+    /**
+     * 新增商品分类
+     * @param shopCategory
+     */
+    int insertShopCategory(ShopCategory shopCategory);
 }

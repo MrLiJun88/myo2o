@@ -23,4 +23,18 @@ public class PathUtil {
         String imagePath = "/upload/item/shop" + shopId + "/";
         return imagePath.replace("/",separator);
     }
+    /**
+     * 获取店铺类别路径
+     */
+    public static String getShopCategoryImagePath() {
+        String imagePath = "/upload/item/shopcategory/";
+        return imagePath.replace("/", separator);
+    }
+    /**
+     * 获取首页头图路径
+     */
+    public static String getHeadLineImagePath() {
+        String imagePath = "/upload/item/headLine/";
+        return imagePath.replace("/", separator);
+    }
 }

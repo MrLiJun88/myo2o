@@ -33,4 +33,11 @@
         order by
         priority asc
     </select>
+
+    <insert id="insertShopCategory" useGeneratedKeys="true" keyColumn="shop_category_id" keyProperty="shopCategoryId">
+        INSERT INTO tb_shop_category
+		(shop_category_name, shop_category_desc, shop_category_img, priority, create_time, last_edit_time, parent_id)
+		VALUES(#{shopCategoryName},#{shopCategoryDesc},#{shopCategoryImg},#{priority},#{createTime},#{lastEditTime},#{parent.shopCategoryId});
+	</insert>
+
 </mapper>
