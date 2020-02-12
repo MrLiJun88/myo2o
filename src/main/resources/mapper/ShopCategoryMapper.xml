@@ -17,14 +17,20 @@
         FROM
         tb_shop_category
         <where>
-            <if test="null != shopCategoryCondition">
+            <!-- 首页查询一级类别的商铺信息 -->
+            <if test="shopCategoryCondition == null">
+                and parent_id is null
+            </if>
+            <!-- 查询二级类别的商铺信息-->
+            <if test="shopCategoryCondition != null">
                 and parent_id is not null
             </if>
-            <if test="null != shopCategoryCondition.parent">
-                and parent_id=#{shopCategoryCondition.parent.shopCategoryId}
+            <!-- 如果传递了父类的id,则查询对应父类下的目录 -->
+            <if test="shopCategoryCondition != null and shopCategoryCondition.parent != null">
+                and parent_id = #{shopCategoryCondition.parent.shopCategoryId}
             </if>
         </where>
-        ORDER BY
-        priority DESC
+        order by
+        priority asc
     </select>
 </mapper>
