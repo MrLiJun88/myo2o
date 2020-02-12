@@ -18,7 +18,7 @@ import java.util.Map;
  * @Date 2020/2/12 17:09
  */
 @RestController
-@RequestMapping(value = "/frontend")
+@RequestMapping(value = "/front")
 public class MainPageController {
 
     @Autowired
