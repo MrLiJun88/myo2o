@@ -11,6 +11,7 @@ import com.hyit.www.service.ShopService;
 import com.hyit.www.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,7 +61,7 @@ public class ShopListController {
                 modelMap.put("errMsg", e.getMessage());
             }
         }
-        // parentId不存在， 即“全部商店”列表
+        // parentId不存在， 即“全部商店”列表,即一级店铺
         else {
             try {
                 shopCategoryList = shopCategoryService.getShopCategoryList(null);
@@ -72,6 +73,7 @@ public class ShopListController {
         modelMap.put("shopCategoryList", shopCategoryList);
         List<Area> areaList = null;
         try {
+            //获取所有的区域信息
             areaList = areaService.getAreaList();
             modelMap.put("success", true);
             modelMap.put("areaList", areaList);
@@ -79,7 +81,6 @@ public class ShopListController {
             modelMap.put("success", false);
             modelMap.put("errMsg", e.getMessage());
         }
-
         return modelMap;
     }
 
@@ -87,7 +88,7 @@ public class ShopListController {
      * 获取指定查询条件下的店铺列表
      * @param request
      */
-    @RequestMapping(value = "listShops", method = RequestMethod.GET)
+    @GetMapping(value = "listShops")
     @ResponseBody
     private Map<String, Object> listShops(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>(16);
