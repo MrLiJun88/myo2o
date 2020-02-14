@@ -45,7 +45,7 @@ $(function() {
     }
 
     /**
-     * 获取分页展示的商品列表信息
+     * 根据查询条件获取分页展示的商品列表信息
      */
     function addItems(pageSize, pageIndex) {
         // 生成新条目的HTML
