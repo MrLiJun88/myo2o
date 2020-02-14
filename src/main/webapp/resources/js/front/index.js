@@ -1,32 +1,32 @@
 $(function() {
-    // ¶¨Òå·ÃÎÊºóÌ¨»ñÈ¡Í·ÌõÁĞ±íÒÔ¼°Ò»¼¶ÉÌÆÌÀà±ğÁĞ±íµÄURL
+    // å®šä¹‰è®¿é—®åå°è·å–å¤´æ¡åˆ—è¡¨ä»¥åŠä¸€çº§å•†é“ºç±»åˆ«åˆ—è¡¨çš„URL
     var url = '/myo2o/front/listMainPageInfo';
 
-    // ·ÃÎÊºóÌ¨»ñÈ¡Í·ÌõÁĞ±íÒÔ¼°Ò»¼¶ÉÌÆÌÀà±ğ
+    // è®¿é—®åå°è·å–å¤´æ¡åˆ—è¡¨ä»¥åŠä¸€çº§å•†é“ºç±»åˆ«
     $.getJSON(url, function (data) {
         if (data.success) {
-            // ¶¨Òå±äÁ¿£¬½ÓÊÕºóÌ¨´«µİ¹ıÀ´µÄÍ·ÌõÁĞ±íÊı¾İ
+            // å®šä¹‰å˜é‡ï¼Œæ¥æ”¶åå°ä¼ é€’è¿‡æ¥çš„å¤´æ¡åˆ—è¡¨æ•°æ®
             var headLineList = data.headLineList;
             var swiperHtml = '';
-            // ±éÀúÍ·ÌõÁĞ±í£¬²¢Æ´½Ó³öÂÖ²¥Í¼×é
+            // éå†å¤´æ¡åˆ—è¡¨ï¼Œå¹¶æ‹¼æ¥å‡ºè½®æ’­å›¾ç»„
             headLineList.map(function (item, index) {
                 swiperHtml += ''
                     + '<div class="swiper-slide img-wrap">'
                     +      '<img class="banner-img" src="'+ item.lineImg +'" alt="'+ item.lineName +'">'
                     + '</div>';
             });
-            // ½«ÂÖ²¥Í¼×é¸³Öµ¸øÇ°¶ËHTML¿Õ¼ä
+            // å°†è½®æ’­å›¾ç»„èµ‹å€¼ç»™å‰ç«¯HTMLç©ºé—´
             $('.swiper-wrapper').html(swiperHtml);
-            // ÉèÖÃÂÖ²¥Í¼ÂÖ»»Ê±¼äÎª1Ãë
+            // è®¾ç½®è½®æ’­å›¾è½®æ¢æ—¶é—´ä¸º1ç§’
             $(".swiper-container").swiper({
                 autoplay: 1000,
-                // ÓÃ»§¶ÔÂÖ²¥Í¼½øĞĞ²Ù×÷Ê±£¬ÊÇ·ñ×Ô¶¯Í£Ö¹autoplay
+                // ç”¨æˆ·å¯¹è½®æ’­å›¾è¿›è¡Œæ“ä½œæ—¶ï¼Œæ˜¯å¦è‡ªåŠ¨åœæ­¢autoplay
                 autoplayDisableOnInteraction: false
             });
-            // »ñÈ¡ºóÌ¨´«µİ¹ıÀ´µÄÒ»¼¶ÉÌÆÌÀà±ğÁĞ±í
+            // è·å–åå°ä¼ é€’è¿‡æ¥çš„ä¸€çº§å•†é“ºç±»åˆ«åˆ—è¡¨
             var shopCategoryList = data.shopCategoryList;
             var categoryHtml = '';
-            // ±éÀúÌ¨´«µİ¹ıÀ´µÄÒ»¼¶ÉÌÆÌÀà±ğÁĞ±í Æ´½Ócol-50 Á½Á½Ò»ĞĞµÄÀà±ğ
+            // éå†å°ä¼ é€’è¿‡æ¥çš„ä¸€çº§å•†é“ºç±»åˆ«åˆ—è¡¨ æ‹¼æ¥col-50 ä¸¤ä¸¤ä¸€è¡Œçš„ç±»åˆ«
             shopCategoryList.map(function (item, index) {
                 categoryHtml += ''
                     +  '<div class="col-50 shop-classify" data-category='+ item.shopCategoryId +'>'
@@ -45,29 +45,29 @@ $(function() {
         }
     });
 
-    // ÎÒµÄ
+    // æˆ‘çš„
     $('#me').click(function () {
         $.openPanel('#panel-left-demo');
     });
 
-    // µã»÷ÌØ¶¨µÄ·ÖÀà
+    // ç‚¹å‡»ç‰¹å®šçš„åˆ†ç±»
     $('.row').on('click', '.shop-classify', function (e) {
         var shopCategoryId = e.currentTarget.dataset.category;
-        var newUrl = '/myo2o/front/shopList?parentId=' + shopCategoryId;
+        var newUrl = '/myo2o/front/shoplist?parentId=' + shopCategoryId;
         window.location.href = newUrl;
     });
 
-    // ÓÃ»§µÇÂ¼
+    // ç”¨æˆ·ç™»å½•
     $('#login').click(function() {
         window.location.href = '/myo2o/admin/login';
     });
 
-    // ĞŞ¸ÄÃÜÂë
+    // ä¿®æ”¹å¯†ç 
     $('#change-pwd').click(function() {
         window.location.href = '/myo2o/admin/changepwd';
     });
 
-    // ÍË³öµÇÂ¼
+    // é€€å‡ºç™»å½•
     $('#log-out').click(function () {
         $.ajax({
             url : "/myo2o/user/logout",

@@ -5,9 +5,9 @@ function changeVerifyCode(img) {
     img.src = "../Kaptcha?" + Math.floor(Math.random() * 100);
 }
 /**
- * ¸ù¾İÊôĞÔÃû»ñÈ¡urlÖĞËù´øµÄÊôĞÔÖµ
+ * æ ¹æ®å±æ€§åè·å–urlä¸­æ‰€å¸¦çš„å±æ€§å€¼
  *
- * @param name:ÊôĞÔÃû
+ * @param name:å±æ€§å
  */
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -17,3 +17,26 @@ function getQueryString(name) {
     }
     return '';
 }
+/**
+ * æ ¼å¼åŒ–æ—¥æœŸ
+ */
+Date.prototype.Format = function(fmt) {
+    var o = {
+        "M+" : this.getMonth() + 1, // æœˆä»½
+        "d+" : this.getDate(), // æ—¥
+        "h+" : this.getHours(), // å°æ—¶
+        "m+" : this.getMinutes(), // åˆ†
+        "s+" : this.getSeconds(), // ç§’
+        "q+" : Math.floor((this.getMonth() + 3) / 3), // å­£åº¦
+        "S" : this.getMilliseconds()
+        // æ¯«ç§’
+    };
+    if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "")
+            .substr(4 - RegExp.$1.length));
+    for ( var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k])
+                : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+};
