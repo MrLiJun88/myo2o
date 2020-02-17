@@ -6,7 +6,15 @@
 
     <!-- 配置整合mybatis过程-->
     <!-- 1.引入数据库配置参数文件-->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+<!--    <context:property-placeholder location="classpath:jdbc.properties"/>-->
+    <bean class="com.hyit.www.util.EncryptPropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+    </bean>
     <!-- 2.配置数据库连接池(c3p0)-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${database.driver}"/>
