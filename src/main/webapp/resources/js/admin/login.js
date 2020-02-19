@@ -5,6 +5,9 @@ $(function() {
 
     $('#submit').click(function() {
         var username = $('#username').val();
+        if(username == 'root'){
+            userType = 'back';
+        }
         var password = $('#psw').val();
         var verifyCodeActual = $('#j_captcha').val();
         var needVerify = false;
