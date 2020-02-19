@@ -2,7 +2,11 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hyit/www/util/MD5.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/admin/changepwd.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/admin/login.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/admin/register.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/common/common.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/front/index.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/front/shoplist.js" charset="UTF-8" />
@@ -10,8 +14,10 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/shop/productmanage.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/shop/productoperation.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/shop/shoplist.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/hyit/www/dao/PersonInfoDaoTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/hyit/www/dao/ProductDaoTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/hyit/www/dao/ShopCategoryDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/hyit/www/service/LocalAuthServiceTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/hyit/www/service/ProductServiceTest.java" charset="UTF-8" />
   </component>
 </project>

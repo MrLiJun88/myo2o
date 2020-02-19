@@ -9,6 +9,7 @@ import java.util.Date;
 @Setter
 public class PersonInfo {
     private Long userId;
+    private Long localAuthId;
     private String name;
     private String profileImg;
     private String email;
